@@ -4,8 +4,15 @@
 <style type="text/css">
 	div {
 		margin-bottom: 20px;
+		font-size:200%;
+    		margin-left: 20%;
 	}
+	
+	table, td, th {
+      	border: 1px solid black;
+  }
 </style>
+	 
 
 <!-- Data -->
 <script>
@@ -201,6 +208,7 @@ var organizations = [
 <body>
 <!-- Feel free to add empty tags. Data shouldn't be here. -->
 	<div id="org_table"></div>
+	<table id='myTable'></table>
 
 <script>
 // outputs the first item of the organizations array. Just for testing.
@@ -208,6 +216,74 @@ var organizations = [
 console.log("test");
 
 // Your JavaScript code goes here
+	
+ var nonprofit=0;
+ var lessthan10=0;
+ var namerica=0
+ var transp =0;
+ var highincome = 0;
+
+
+var tr1 = document.createElement('tr');
+	
+var th1 = document.createElement('th');
+th1.innerHTML = "Non_Profit total";
+var th2 = document.createElement('th');
+th2.innerHTML = "Less Than 10 years";
+var th3 = document.createElement('th');
+th3.innerHTML = "North American Total";
+var th4 = document.createElement('th');
+th4.innerHTML = "Transportation Data Used";
+var th5 = document.createElement('th');
+th5.innerHTML = "Total High Income countries";
+
+tr1.appendChild(th1);
+tr1.appendChild(th2);
+tr1.appendChild(th3);
+tr1.appendChild(th4);
+tr1.appendChild(th5);
+document.getElementById('myTable').appendChild(tr1);
+
+
+for(b=0;b<organizations.length;b++){
+  if(organizations[b]['Organization Type']=="Nonprofit"){
+    nonprofit+=1;
+  }
+  if((2018-organizations[b]['Founding Year'])<10){
+    lessthan10+=1;
+  }
+
+  if(organizations[b]['Region']=="North America"){
+    namerica+=1;
+  }
+  if (organizations[b]['Type of Data Used'].search("Transportation") != -1){
+    transp+=1;
+  }
+  if (organizations[b]['Country Income Level']=="High income"){
+     highincome+=1;
+  }
+}
+
+var tr2 = document.createElement('tr');
+
+var td1 = document.createElement('td');
+td1.innerHTML = nonprofit;
+var td2 = document.createElement('td');
+td2.innerHTML = lessthan10;
+var td3 = document.createElement('td');
+td3.innerHTML = namerica;
+var td4 = document.createElement('td');
+td4.innerHTML = transp;
+var td5 = document.createElement('td');
+td5.innerHTML = highincome;
+
+tr2.appendChild(td1);
+tr2.appendChild(td2);
+tr2.appendChild(td3);
+tr2.appendChild(td4);
+tr2.appendChild(td5);
+
+document.getElementById('myTable').appendChild(tr2);
 
 
 </script>
